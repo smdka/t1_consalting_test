@@ -1,0 +1,37 @@
+openapi: "3.0.3"
+info:
+  title: "Тестовое задание"
+  description: "REST API для подсчета частоты встречи символов в заданной строке"
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8080"
+paths:
+  /string:
+    post:
+      summary: "POST string"
+      operationId: "getCharsFreq"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "string"
+              example: "bbaaa"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/Response"
+components:
+  schemas:
+    Response:
+      type: object
+      description: Отсортированный в обратном порядке по значениям словарь. Ключом является символ из исходной строки
+      additionalProperties:
+        type: integer
+        description: Частота появления символа в исходной строке
+      example:
+        a: 3
+        b: 2
